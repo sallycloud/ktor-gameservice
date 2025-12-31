@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Game Service API
-  version: "0.0.1"
+  version: @VERSION@
   description: Basic infos on board games
 servers:
   - url: http://localhost:8080

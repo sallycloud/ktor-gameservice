@@ -1,5 +1,5 @@
 [versions]
-ktor-gameservice = "0.0.1"
+ktor-gameservice = "1.0.0"
 koin = "4.1.2-Beta1"
 kotlin = "2.2.20"
 ktor = "3.3.2"

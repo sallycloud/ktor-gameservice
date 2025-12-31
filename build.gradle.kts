@@ -80,6 +80,12 @@ tasks.register<Exec>("buildDockerImage") {
     )
 }
 
+tasks.named<ProcessResources>("processResources") {
+    filesMatching("openapi/documentation.yaml") {
+        filter { line -> line.replace("@VERSION@", project.version.toString()) }
+    }
+}
+
 tasks.register("printVersion") {
     doLast {
         println(project.version)
