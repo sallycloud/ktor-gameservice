@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Game Service API
+  version: "0.0.1"
+  description: Basic infos on board games
+servers:
+  - url: http://localhost:8080
+paths:
+  /:
+    summary: Version info
+    description: Game Service API version info
+    get:
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VersionInfoDTO'
+
+  /games:
+    get:
+      summary: List of all games
+      description: Returns a list of all games
+      parameters:
+        - in: query
+          name: name
+          description: Include only games with this name
+          required: false
+          schema:
+            type: string
+            example: "Tic Tac Toe"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameDTO'
+  /licenses:
+    get:
+      summary: "Retrieve all licenses"
+      description: "Returns a list of all available licenses."
+      responses:
+        '200':
+          description: "A list of licenses"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: '#/components/schemas/LicenseInformationDTO'
+components:
+  schemas:
+    VersionInfoDTO:
+      type: object
+      description: Version info
+      properties:
+        app:
+          type: string
+          example: "ktor-gameservice"
+        version:
+          type: string
+          example: "0.0.1"
+    GameDTO:
+      type: object
+      description: Game information
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Tic Tac Toe"
+        playersMin:
+          type: integer
+          example: 2
+        playersMax:
+          type: integer
+          example: 2
+        fromAge:
+          type: integer
+          example: 6
+        isCompetitive:
+          type: boolean
+          example: true
+      required:
+        - name
+    LicenseInformationDTO:
+      type: object
+      properties:
+        dependencies:
+          type: array
+          items:
+            type: object
+            properties:
+              moduleName:
+                type: string
+              moduleUrl:
+                type: string
+              moduleVersion:
+                type: string
+              moduleLicense:
+                type: string
+              moduleLicenseUrl:
+                type: string
+            required:
+              - moduleName
+              - moduleUrl
+              - moduleVersion
+              - moduleLicense
+              - moduleLicenseUrl
+      required:
+        - dependencies

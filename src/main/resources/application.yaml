@@ -1,0 +1,8 @@
+ktor:
+    application:
+        modules:
+            - de.kr.ApplicationKt.module
+        version: ${version}
+
+    deployment:
+        port: 8080
