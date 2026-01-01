@@ -36,13 +36,13 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t sallylockhart/ktor-gameservice:latest \
-                       -t sallylockhart/ktor-gameservice:v$PROJECT_VERSION .
+          docker build --no-cache -t sallylockhart/ktor-gameservice:latest \
+                       -t sallylockhart/ktor-gameservice:v${{ env.PROJECT_VERSION }} .
 
       - name: Push Docker images
         run: |
           docker push sallylockhart/ktor-gameservice:latest
-          docker push sallylockhart/ktor-gameservice:v$PROJECT_VERSION
+          docker push sallylockhart/ktor-gameservice:v${{ env.PROJECT_VERSION }}
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
