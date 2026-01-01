@@ -53,6 +53,6 @@ jobs:
         uses: google-github-actions/deploy-cloudrun@v1
         with:
           service: ktor-gameservice
-          image: sallylockhart/ktor-gameservice:latest
+          image: sallylockhart/ktor-gameservice:v$PROJECT_VERSION
           region: europe-west1
           project_id: helsinki-gameservice
